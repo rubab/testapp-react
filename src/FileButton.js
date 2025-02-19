@@ -53,11 +53,12 @@ const FileUploadButton = ({ onUploadSuccess }) => {
                 variant="contained"
                 tabIndex={-1}
                 startIcon={<CloudUploadIcon />}
+                style={{ marginBottom: "10px" }}
             >
                 Upload files
                 <VisuallyHiddenInput type="file" onChange={handleFileChange} />
             </Button>
-            <Button component="label" variant="contained" onClick={handleUpload} style={{ marginLeft: "10px" }}>
+            <Button component="label" variant="contained" onClick={handleUpload} style={{ marginLeft: "10px", marginBottom: "10px" }}>
                 Submit
             </Button>
             {msg && <><Button
@@ -67,7 +68,7 @@ const FileUploadButton = ({ onUploadSuccess }) => {
                 tabIndex={-1}
                 startIcon={<RefreshRounded />}
                 onClick={hangleRefresh}
-                style={{ marginLeft: "10px" }}
+                style={{ marginLeft: "10px", marginBottom: "10px" }}
             >
             </Button>
             <Typography variant="body1">{msg}</Typography></>}

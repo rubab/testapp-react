@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Box, Container, AppBar, Toolbar, Typography, Paper, Button } from "@mui/material";
-import { fetchPlots, uploadFile } from "./api";
+import { Container, AppBar, Toolbar, Typography, Paper } from "@mui/material";
+import { fetchPlots } from "./api";
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import FileUploadButton from "./FileButton";
 
@@ -61,11 +61,13 @@ const App = () => {
   console.log(plots?.total)
   return (
     <Container maxWidth="md">
-      <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6">Villas.pk</Typography>
+          <img
+            src="/logo.png" // Path to the image in the public folder
+            alt="Villas.pk"
+            style={{ width: '30%' }}
+          />
         </Toolbar>
-      </AppBar>
       <img
         src="/banner-image.png" // Path to the image in the public folder
         alt="Banner"
@@ -84,7 +86,6 @@ const App = () => {
             paginationModel={paginationModel}
             onPaginationModelChange={setPaginationModel}
             pageSizeOptions={[5, 10]}
-            checkboxSelection
             sx={{ border: 0 }}
           />
         </Paper>
