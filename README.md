@@ -6,8 +6,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 In the project directory, you can run:
 
 ## Set up .env file
-cp .env.example .env
-update all environment variables in .env file.
+`cp .env.example .env`
+update all environment variables in `.env` file.
 
 ### `npm start`
 
