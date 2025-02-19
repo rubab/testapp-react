@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Container, AppBar, Toolbar, Typography, Paper } from "@mui/material";
 import { fetchPlots } from "./api";
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
@@ -10,14 +10,15 @@ const App = () => {
     page: 0,
     pageSize: 10,
   });
-  const getPlots = async (page, pageSize) => {
+
+  const getPlots = useCallback(async (page, pageSize) => {
     const data = await fetchPlots(page, pageSize);
     setPlots(data);
-  };
+  }, []);
 
   useEffect(() => {
     getPlots(paginationModel.page, paginationModel.pageSize);
-  }, [paginationModel]);
+  }, []);
 
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 70 },
@@ -60,20 +61,22 @@ const App = () => {
 
   return (
     <Container maxWidth="md">
-        <Toolbar>
-          <img
-            src="/logo.png" // Path to the image in the public folder
-            alt="Villas.pk"
-            style={{ width: '30%' }}
-          />
-        </Toolbar>
+      <Toolbar>
+        <img
+          src="/logo.png" // Path to the image in the public folder
+          alt="Villas.pk"
+          style={{ width: '30%' }}
+        />
+      </Toolbar>
       <img
         src="/banner-image.png" // Path to the image in the public folder
         alt="Banner"
         style={{ width: '100%', height: '100%', objectFit: 'cover' }}
       />
       <Paper elevation={0}>
-        <FileUploadButton onUploadSuccess={getPlots} />
+        <FileUploadButton
+          onUploadSuccess={() => getPlots(paginationModel.page, paginationModel.pageSize)}
+        />
         <Typography variant="h4"></Typography>
         <Typography variant="body1"></Typography>
         <Paper>
