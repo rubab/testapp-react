@@ -9,6 +9,9 @@ In the project directory, you can run:
 `cp .env.example .env`
 update all environment variables in `.env` file.
 
+## To install dependencies 
+`npm install`
+
 ### `npm start`
 
 Runs the app in the development mode.\
