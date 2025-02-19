@@ -20,13 +20,18 @@ const VisuallyHiddenInput = styled("input")({
 const FileUploadButton = ({ onUploadSuccess }) => {
     const [file, setFile] = useState([]);
     const [msg, setMsg] = useState('');
+    const [errorMsg, setErrorMsg] = useState('');
 
     const handleFileChange = (event) => {
         setFile(event.target.files[0]);
     };
 
     const handleUpload = async () => {
-        if (!file) return;
+        if (file.length == 0) {
+            setErrorMsg("Select file first...")
+            return;
+        }
+        
         const formData = new FormData();
         formData.append("excel_file", file);
 
@@ -61,6 +66,7 @@ const FileUploadButton = ({ onUploadSuccess }) => {
             <Button component="label" variant="contained" onClick={handleUpload} style={{ marginLeft: "10px", marginBottom: "10px" }}>
                 Submit
             </Button>
+            {errorMsg && <Typography variant="body1" style={{ color: "red" }}>{errorMsg}</Typography>}
             {msg && <><Button
                 component="label"
                 role={undefined}

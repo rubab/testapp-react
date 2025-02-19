@@ -58,7 +58,6 @@ const App = () => {
     },
   ];
 
-  console.log(plots?.total)
   return (
     <Container maxWidth="md">
         <Toolbar>
